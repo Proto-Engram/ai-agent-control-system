@@ -1,0 +1,43 @@
+{
+  "dataset_id": "demo-dataset",
+  "rubric_version": "1.0",
+  "focus": "demo_synthetic",
+  "photograph_count": 10,
+  "group_count": 3,
+  "photographs": [
+    {"photograph_id": "demo-001", "tags": ["demo"], "in_groups": ["group-001"]},
+    {"photograph_id": "demo-002", "tags": ["demo"], "in_groups": ["group-001"]},
+    {"photograph_id": "demo-003", "tags": ["demo"], "in_groups": ["group-002"]},
+    {"photograph_id": "demo-004", "tags": ["demo"], "in_groups": ["group-002"]},
+    {"photograph_id": "demo-005", "tags": ["demo"], "in_groups": ["group-003"]},
+    {"photograph_id": "demo-006", "tags": ["demo"], "in_groups": ["group-003"]},
+    {"photograph_id": "demo-007", "tags": ["demo"], "in_groups": ["group-001"]},
+    {"photograph_id": "demo-008", "tags": ["demo"], "in_groups": ["group-002"]},
+    {"photograph_id": "demo-009", "tags": ["demo"], "in_groups": ["group-003"]},
+    {"photograph_id": "demo-010", "tags": ["demo"], "in_groups": ["group-001"]}
+  ],
+  "comparison_groups": [
+    {
+      "group_id": "group-001",
+      "photograph_ids": ["demo-001", "demo-002", "demo-007", "demo-010"],
+      "group_type": "demo_pair",
+      "human_reference_keep_preference": "demo-001",
+      "curator_notes": "Synthetic demo group — no real images."
+    },
+    {
+      "group_id": "group-002",
+      "photograph_ids": ["demo-003", "demo-004", "demo-008"],
+      "group_type": "demo_pair",
+      "human_reference_keep_preference": "demo-003",
+      "curator_notes": "Synthetic demo group."
+    },
+    {
+      "group_id": "group-003",
+      "photograph_ids": ["demo-005", "demo-006", "demo-009"],
+      "group_type": "demo_pair",
+      "human_reference_keep_preference": "demo-005",
+      "curator_notes": "Synthetic demo group."
+    }
+  ],
+  "privacy_notes": "Demo manifest only — no image bytes or local paths."
+}

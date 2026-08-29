@@ -1,0 +1,76 @@
+{
+  "rubric_version": "1.0",
+  "task": "comparative_judgment",
+  "group_id": "group-001",
+  "comparison_basis": "Same street corner, consecutive frames",
+  "shared_inferred_intent": {
+    "statement": "Capture pedestrian crossing in available light.",
+    "confidence": "moderate"
+  },
+  "photographs": [
+    {
+      "photograph_id": "pilot-001",
+      "dimensions": {
+        "technical_quality": {
+          "band": "adequate",
+          "confidence": "high",
+          "evidence": ["Sharp subject"]
+        },
+        "artistic_compositional": {
+          "band": "limited",
+          "confidence": "moderate",
+          "evidence": ["Centered composition"]
+        },
+        "subject_moment_storytelling": {
+          "band": "adequate",
+          "confidence": "moderate",
+          "evidence": ["Clear stride mid-step"]
+        }
+      },
+      "overall_characterization": null
+    },
+    {
+      "photograph_id": "pilot-002",
+      "dimensions": {
+        "technical_quality": {
+          "band": "limited",
+          "confidence": "high",
+          "evidence": ["Motion blur on subject"]
+        },
+        "artistic_compositional": {
+          "band": "adequate",
+          "confidence": "moderate",
+          "evidence": ["Strong diagonal from crosswalk"]
+        },
+        "subject_moment_storytelling": {
+          "band": "strong",
+          "confidence": "high",
+          "evidence": ["Peak gesture with arm raised"]
+        }
+      },
+      "overall_characterization": null
+    }
+  ],
+  "dimension_winners": {
+    "technical_quality": "pilot-001",
+    "artistic_compositional": "pilot-002",
+    "subject_moment_storytelling": "pilot-002"
+  },
+  "personal_documentary_flags": [],
+  "overall_keep_preference": {
+    "photograph_id": "pilot-002",
+    "confidence": "moderate",
+    "reasoning": "Stronger moment outweighs minor technical weakness.",
+    "tradeoffs": "pilot-001 is sharper but less decisive moment."
+  },
+  "wildcard_alternate": {
+    "photograph_id": null,
+    "reason": ""
+  },
+  "user_might_prefer_instead": {
+    "photograph_id": null,
+    "reason": ""
+  },
+  "no_clear_winner": false,
+  "uncertainty_notes": []
+}

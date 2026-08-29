@@ -1,0 +1,67 @@
+{
+  "experiment_id": "demo-control-plane",
+  "phase": "pilot",
+  "dataset_id": "demo-dataset",
+  "rubric_version": "1.0",
+  "prompt_version": "DEMO-v1.0",
+  "prompt_path": null,
+  "preprocessing_policy": "demo-no-op",
+  "pricing_snapshot_id": "demo-2026-08-29",
+  "blinding_seed": 1,
+  "candidates": ["Demo Candidate A", "Demo Candidate B"],
+  "model_mapping_path": "examples/demo-manifest/model-mapping.json",
+  "retry_policy": {
+    "max_retries": 1,
+    "retry_on_parse_failure": true,
+    "rate_limit_backoff": "none"
+  },
+  "inference_parameters": {
+    "temperature": "0",
+    "top_p": "1",
+    "max_output_tokens": "1024"
+  },
+  "notes": "Public portfolio demo manifest — not a product experiment.",
+  "prompt_freeze": {
+    "ledger_entry": "HD-13",
+    "prompt_versions": {
+      "task_a": "DEMO-A-v1.0",
+      "task_b": "DEMO-B-v1.0",
+      "framework": "DEMO-FRAMEWORK-v1.0",
+      "output_contract": "DEMO-OUTPUT-CONTRACT-v1.0",
+      "cross_model_invariants": "DEMO-INVARIANTS-v1.0"
+    },
+    "prompt_paths": {
+      "task_a": "examples/demo-prompt/DEMO-A-v1.0.md",
+      "task_b": "examples/demo-prompt/DEMO-B-v1.0.md",
+      "framework": "examples/demo-prompt/DEMO-FRAMEWORK-v1.0.md",
+      "output_contract": "examples/demo-prompt/DEMO-OUTPUT-CONTRACT-v1.0.md",
+      "cross_model_invariants": "examples/demo-prompt/DEMO-INVARIANTS-v1.0.md"
+    },
+    "prompt_hashes": {
+      "task_a": "c43925bb670f5784c5ec0d408a7700c73fe7073b9d17b2cb9817c9efff6d581b",
+      "task_b": "ff8d9bb7b9a90eb5eb828a8710e63f9100cd3dab5a2dd89650b4ba3304813012",
+      "framework": "561c6a79bc74742709a665d83091127d129c8d8a85e9d3731b14c043b00c670d",
+      "output_contract": "c7948873c6ef59034c97da5cea01e6b8b740fd9e7be2900d9f9cb851602529fd",
+      "cross_model_invariants": "a037e7cec992a55775b0f8268db259ae71f72871ca6a2a677e2401afce0abb81",
+      "framework_semantic_module": "207698507d079d3a1d0597d692b655aba36c75ee081b88ae160f30eddbfd60ab",
+      "composed_system_task_a": "ad028168338cbe82c68bb94b93d9656bc1f3c15df0a3118ad3ed9545c39fa867",
+      "composed_system_task_b": "217c6f5211c61518cdfa50049db8a4c68e79386e957c56d1e15ef99b1c0bf39e",
+      "user_template_task_a": "c6afd84a057cb98064ba2a2746ce617230cba227ab80f7d7294605d915b501d6",
+      "user_template_task_b": "afa53f919a2821913214909574da1f8dfaeba93633c54b3c9528458679cb867e"
+    }
+  },
+  "foundry": {
+    "deployment_type": "demo",
+    "azure_region": "demo",
+    "deployment_name": "demo",
+    "pricing_meter": "demo",
+    "pricing_snapshot_date": "2026-08-29",
+    "reasoning_configuration": "demo",
+    "preprocessing_configuration": "demo",
+    "portal_meter_verified": true
+  },
+  "evaluator": {
+    "evaluator_id": "demo-evaluator",
+    "conflict_of_interest_notes": "none"
+  }
+}

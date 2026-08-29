@@ -1,0 +1,35 @@
+{
+  "rubric_version": "1.0",
+  "task": "individual_critique",
+  "photograph_id": "pilot-001",
+  "inferred_intent": {
+    "statement": "Document street activity in late afternoon light.",
+    "confidence": "moderate"
+  },
+  "dimensions": {
+    "technical_quality": {
+      "band": "adequate",
+      "confidence": "high",
+      "evidence": ["Acceptable exposure on main subject", "Slight motion blur at frame edge"]
+    },
+    "artistic_compositional": {
+      "band": "limited",
+      "confidence": "moderate",
+      "evidence": ["Subject centered without strong leading lines"]
+    },
+    "subject_moment_storytelling": {
+      "band": "adequate",
+      "confidence": "moderate",
+      "evidence": ["Visible interaction between two pedestrians"]
+    }
+  },
+  "overall_characterization": null,
+  "critique": {
+    "what_works": "The moment between the two figures reads clearly.",
+    "what_does_not": "Composition feels static; background competes with subject.",
+    "strongest_element": "Facial orientation and gesture toward each other.",
+    "biggest_weakness": "Cluttered background reduces subject isolation.",
+    "try_next": "Wait for cleaner background or move closer to simplify frame."
+  },
+  "uncertainty_notes": []
+}

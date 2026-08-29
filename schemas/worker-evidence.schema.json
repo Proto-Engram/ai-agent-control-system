@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://photo-critic.local/schemas/worker-evidence.schema.json",
+  "title": "Worker Evidence",
+  "type": "object",
+  "required": ["role", "task_id", "timestamp", "git", "commands", "overall_pass"],
+  "additionalProperties": false,
+  "properties": {
+    "role": { "const": "worker" },
+    "task_id": { "type": "string", "minLength": 1 },
+    "timestamp": { "type": "string", "minLength": 1 },
+    "git": {
+      "type": "object",
+      "required": ["commit"],
+      "properties": {
+        "commit": { "type": ["string", "null"] },
+        "status_porcelain": { "type": "string" },
+        "clean": { "type": "boolean" }
+      }
+    },
+    "commands": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "command", "exit_code"],
+        "properties": {
+          "id": { "type": "string" },
+          "command": { "type": "array", "items": { "type": "string" } },
+          "exit_code": { "type": "integer" },
+          "stdout": { "type": "string" },
+          "stderr": { "type": "string" }
+        }
+      }
+    },
+    "overall_pass": { "type": "boolean" },
+    "control_plane_changes": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

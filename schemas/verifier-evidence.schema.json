@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://photo-critic.local/schemas/verifier-evidence.schema.json",
+  "title": "Verifier Evidence",
+  "type": "object",
+  "required": [
+    "role",
+    "task_id",
+    "timestamp",
+    "verified_git_commit",
+    "worker_evidence_sha256",
+    "commands",
+    "overall_pass"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "role": { "const": "verifier" },
+    "task_id": { "type": "string", "minLength": 1 },
+    "timestamp": { "type": "string", "minLength": 1 },
+    "verified_git_commit": { "type": ["string", "null"] },
+    "worker_evidence_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "commands": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "command", "exit_code"],
+        "properties": {
+          "id": { "type": "string" },
+          "command": { "type": "array", "items": { "type": "string" } },
+          "exit_code": { "type": "integer" },
+          "stdout": { "type": "string" },
+          "stderr": { "type": "string" }
+        }
+      }
+    },
+    "overall_pass": { "type": "boolean" },
+    "session_independence_note": {
+      "type": "string",
+      "const": "Evidence separation and command replay verified mechanically; independent AI session not proven."
+    }
+  }
+}

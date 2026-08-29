@@ -1,0 +1,34 @@
+{
+  "rubric_version": "1.0",
+  "task": "individual_critique",
+  "photograph_id": "pilot-001",
+  "inferred_intent": {
+    "statement": "Test",
+    "confidence": "invalid_confidence"
+  },
+  "dimensions": {
+    "technical_quality": {
+      "band": "adequate",
+      "confidence": "high",
+      "evidence": ["x"]
+    },
+    "artistic_compositional": {
+      "band": "adequate",
+      "confidence": "high",
+      "evidence": ["x"]
+    },
+    "subject_moment_storytelling": {
+      "band": "adequate",
+      "confidence": "high",
+      "evidence": ["x"]
+    }
+  },
+  "critique": {
+    "what_works": "a",
+    "what_does_not": "b",
+    "strongest_element": "c",
+    "biggest_weakness": "d",
+    "try_next": "e"
+  },
+  "uncertainty_notes": []
+}

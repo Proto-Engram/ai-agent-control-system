@@ -1,0 +1,5 @@
+# Canonical line endings for cross-platform hash reproducibility (HD-13).
+* text=auto eol=lf
+prompts/evaluation/*.md text eol=lf
+docs/**/*.md text eol=lf
+scripts/**/*.py text eol=lf

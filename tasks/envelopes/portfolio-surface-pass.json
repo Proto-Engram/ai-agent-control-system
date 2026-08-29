@@ -1,0 +1,46 @@
+{
+  "task_id": "portfolio-surface-pass",
+  "authority": ["human:commit-request", "HD-08"],
+  "allowed_paths": [
+    ".gitignore",
+    ".pre-commit-config.yaml",
+    "AGENTS.md",
+    "README.md",
+    "artifacts/README.md",
+    "data/README.md",
+    "data/evaluation/**",
+    "docs/**",
+    "experiments/**",
+    "lab/README.md",
+    "prompts/review/**",
+    "requirements-dev.txt",
+    "schemas/**",
+    "scripts/**",
+    "tasks/**",
+    "templates/**",
+    "tests/**"
+  ],
+  "forbidden_paths": [
+    "prompts/evaluation/P1-A-v1.1.md",
+    "prompts/evaluation/P1-B-v1.1.md",
+    "prompts/evaluation/P1-PHOTOGRAPHIC-CRITICAL-FRAMEWORK-v1.0.md",
+    "prompts/evaluation/P1-OUTPUT-CONTRACT-v1.0.md",
+    "prompts/evaluation/P1-CROSS-MODEL-INVARIANTS-v1.0.md"
+  ],
+  "frozen_paths": [
+    "prompts/evaluation/P1-A-v1.1.md",
+    "prompts/evaluation/P1-B-v1.1.md",
+    "prompts/evaluation/P1-PHOTOGRAPHIC-CRITICAL-FRAMEWORK-v1.0.md",
+    "prompts/evaluation/P1-OUTPUT-CONTRACT-v1.0.md",
+    "prompts/evaluation/P1-CROSS-MODEL-INVARIANTS-v1.0.md"
+  ],
+  "allowed_dependency_changes": true,
+  "forbidden_operations": [
+    "external_api_call",
+    "photograph_transmission",
+    "lab_scaffolding"
+  ],
+  "require_verifier_evidence": false,
+  "external_io_allowed": false,
+  "commit_allowed": true
+}

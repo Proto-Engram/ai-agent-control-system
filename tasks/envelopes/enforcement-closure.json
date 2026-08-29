@@ -1,0 +1,41 @@
+{
+  "task_id": "enforcement-closure",
+  "authority": ["session:enforcement-closure-pass", "HD-08"],
+  "allowed_paths": [
+    "scripts/**",
+    "tests/**",
+    "schemas/**",
+    "tasks/**",
+    "templates/task-contract.md",
+    "docs/10-DEVELOPMENT-GUIDE.md",
+    "docs/12-CONTROL-SYSTEM.md",
+    "requirements-dev.txt",
+    ".pre-commit-config.yaml"
+  ],
+  "forbidden_paths": [
+    "docs/07-DECISIONS.md",
+    "prompts/evaluation/P1-A-v1.1.md",
+    "prompts/evaluation/P1-B-v1.1.md",
+    "prompts/evaluation/P1-PHOTOGRAPHIC-CRITICAL-FRAMEWORK-v1.0.md",
+    "prompts/evaluation/P1-OUTPUT-CONTRACT-v1.0.md",
+    "prompts/evaluation/P1-CROSS-MODEL-INVARIANTS-v1.0.md",
+    "lab/**"
+  ],
+  "frozen_paths": [
+    "prompts/evaluation/P1-A-v1.1.md",
+    "prompts/evaluation/P1-B-v1.1.md",
+    "prompts/evaluation/P1-PHOTOGRAPHIC-CRITICAL-FRAMEWORK-v1.0.md",
+    "prompts/evaluation/P1-OUTPUT-CONTRACT-v1.0.md",
+    "prompts/evaluation/P1-CROSS-MODEL-INVARIANTS-v1.0.md"
+  ],
+  "allowed_dependency_changes": true,
+  "forbidden_operations": [
+    "external_api_call",
+    "photograph_transmission",
+    "autonomous_commit",
+    "lab_scaffolding"
+  ],
+  "require_verifier_evidence": true,
+  "external_io_allowed": false,
+  "commit_allowed": false
+}

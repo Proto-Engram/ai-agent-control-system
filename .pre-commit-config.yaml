@@ -1,0 +1,18 @@
+# P1 security baseline (HD-13 freeze). Gitleaks + unified policy gate.
+# Install: python scripts/bootstrap_controls.py
+# Semgrep, OSV-Scanner, Trivy deferred until application code / dependencies exist.
+
+repos:
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.24.2
+    hooks:
+      - id: gitleaks
+
+  - repo: local
+    hooks:
+      - id: verify-policy-gate
+        name: Unified policy gate (verify_policy.py — no pre-commit recursion)
+        entry: python scripts/verify_policy.py --staged
+        language: python
+        pass_filenames: false
+        always_run: true

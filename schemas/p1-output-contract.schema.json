@@ -1,0 +1,233 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://photo-critic.local/schemas/p1-output-contract.schema.json",
+  "title": "P1 Output Contract",
+  "description": "Derived from prompts/evaluation/P1-OUTPUT-CONTRACT-v1.0.md (HD-13 frozen).",
+  "$defs": {
+    "band": {
+      "type": "string",
+      "enum": ["weak", "limited", "adequate", "strong", "exceptional"]
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["high", "moderate", "low"]
+    },
+    "overall_characterization": {
+      "type": ["string", "null"],
+      "enum": ["weak", "mediocre", "competent", "strong", "exceptional", null]
+    },
+    "intent_object": {
+      "type": "object",
+      "required": ["statement", "confidence"],
+      "additionalProperties": false,
+      "properties": {
+        "statement": { "type": "string", "minLength": 1 },
+        "confidence": { "$ref": "#/$defs/confidence" }
+      }
+    },
+    "dimension_object": {
+      "type": "object",
+      "required": ["band", "confidence", "evidence"],
+      "additionalProperties": false,
+      "properties": {
+        "band": { "$ref": "#/$defs/band" },
+        "confidence": { "$ref": "#/$defs/confidence" },
+        "evidence": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "pd_dimension_object": {
+      "allOf": [
+        { "$ref": "#/$defs/dimension_object" },
+        {
+          "type": "object",
+          "required": ["unknown_personal_context"],
+          "properties": {
+            "unknown_personal_context": { "type": "boolean" }
+          }
+        }
+      ]
+    },
+    "task_a_dimensions": {
+      "type": "object",
+      "required": [
+        "technical_quality",
+        "artistic_compositional",
+        "subject_moment_storytelling"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "technical_quality": { "$ref": "#/$defs/dimension_object" },
+        "artistic_compositional": { "$ref": "#/$defs/dimension_object" },
+        "subject_moment_storytelling": { "$ref": "#/$defs/dimension_object" },
+        "personal_documentary_significance": { "$ref": "#/$defs/pd_dimension_object" }
+      }
+    },
+    "task_b_photo_dimensions": {
+      "type": "object",
+      "required": [
+        "technical_quality",
+        "artistic_compositional",
+        "subject_moment_storytelling"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "technical_quality": { "$ref": "#/$defs/dimension_object" },
+        "artistic_compositional": { "$ref": "#/$defs/dimension_object" },
+        "subject_moment_storytelling": { "$ref": "#/$defs/dimension_object" }
+      }
+    },
+    "critique_object": {
+      "type": "object",
+      "required": [
+        "what_works",
+        "what_does_not",
+        "strongest_element",
+        "biggest_weakness",
+        "try_next"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "what_works": { "type": "string" },
+        "what_does_not": { "type": "string" },
+        "strongest_element": { "type": "string" },
+        "biggest_weakness": { "type": "string" },
+        "try_next": { "type": "string" }
+      }
+    },
+    "task_a_output": {
+      "type": "object",
+      "required": [
+        "rubric_version",
+        "task",
+        "photograph_id",
+        "inferred_intent",
+        "dimensions",
+        "critique",
+        "uncertainty_notes"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "rubric_version": { "type": "string", "const": "1.0" },
+        "task": { "type": "string", "const": "individual_critique" },
+        "photograph_id": { "type": "string", "minLength": 1 },
+        "inferred_intent": { "$ref": "#/$defs/intent_object" },
+        "dimensions": { "$ref": "#/$defs/task_a_dimensions" },
+        "overall_characterization": { "$ref": "#/$defs/overall_characterization" },
+        "critique": { "$ref": "#/$defs/critique_object" },
+        "uncertainty_notes": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "task_b_output": {
+      "type": "object",
+      "required": [
+        "rubric_version",
+        "task",
+        "group_id",
+        "comparison_basis",
+        "shared_inferred_intent",
+        "photographs",
+        "dimension_winners",
+        "personal_documentary_flags",
+        "overall_keep_preference",
+        "wildcard_alternate",
+        "user_might_prefer_instead",
+        "no_clear_winner",
+        "uncertainty_notes"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "rubric_version": { "type": "string", "const": "1.0" },
+        "task": { "type": "string", "const": "comparative_judgment" },
+        "group_id": { "type": "string", "minLength": 1 },
+        "comparison_basis": { "type": "string", "minLength": 1 },
+        "shared_inferred_intent": { "$ref": "#/$defs/intent_object" },
+        "photographs": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 6,
+          "items": {
+            "type": "object",
+            "required": ["photograph_id", "dimensions"],
+            "additionalProperties": false,
+            "properties": {
+              "photograph_id": { "type": "string", "minLength": 1 },
+              "dimensions": { "$ref": "#/$defs/task_b_photo_dimensions" },
+              "overall_characterization": { "$ref": "#/$defs/overall_characterization" }
+            }
+          }
+        },
+        "dimension_winners": {
+          "type": "object",
+          "required": [
+            "technical_quality",
+            "artistic_compositional",
+            "subject_moment_storytelling"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "technical_quality": { "type": "string" },
+            "artistic_compositional": { "type": "string" },
+            "subject_moment_storytelling": { "type": "string" }
+          }
+        },
+        "personal_documentary_flags": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["photograph_id", "reason", "confidence"],
+            "additionalProperties": false,
+            "properties": {
+              "photograph_id": { "type": "string" },
+              "reason": { "type": "string" },
+              "confidence": { "$ref": "#/$defs/confidence" }
+            }
+          }
+        },
+        "overall_keep_preference": {
+          "type": "object",
+          "required": ["photograph_id", "confidence", "reasoning", "tradeoffs"],
+          "additionalProperties": false,
+          "properties": {
+            "photograph_id": { "type": "string" },
+            "confidence": { "$ref": "#/$defs/confidence" },
+            "reasoning": { "type": "string" },
+            "tradeoffs": { "type": "string" }
+          }
+        },
+        "wildcard_alternate": {
+          "type": "object",
+          "required": ["photograph_id", "reason"],
+          "additionalProperties": false,
+          "properties": {
+            "photograph_id": { "type": ["string", "null"] },
+            "reason": { "type": "string" }
+          }
+        },
+        "user_might_prefer_instead": {
+          "type": "object",
+          "required": ["photograph_id", "reason"],
+          "additionalProperties": false,
+          "properties": {
+            "photograph_id": { "type": ["string", "null"] },
+            "reason": { "type": "string" }
+          }
+        },
+        "no_clear_winner": { "type": "boolean" },
+        "uncertainty_notes": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  },
+  "oneOf": [
+    { "$ref": "#/$defs/task_a_output" },
+    { "$ref": "#/$defs/task_b_output" }
+  ]
+}

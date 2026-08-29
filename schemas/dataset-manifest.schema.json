@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://photo-critic.local/schemas/dataset-manifest.schema.json",
+  "title": "Photo Critic Dataset Manifest",
+  "description": "Derived from docs/03-MODEL-EVALUATION.md section 1.5. Committed manifests must not contain sensitive local_path values.",
+  "type": "object",
+  "required": [
+    "dataset_id",
+    "rubric_version",
+    "focus",
+    "photograph_count",
+    "group_count",
+    "photographs",
+    "comparison_groups",
+    "privacy_notes"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "dataset_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rubric_version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "focus": {
+      "type": "string",
+      "minLength": 1
+    },
+    "photograph_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "group_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "photographs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["photograph_id", "tags", "in_groups"],
+        "additionalProperties": false,
+        "properties": {
+          "photograph_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "local_path": {
+            "type": "string",
+            "description": "Local only — must not be committed with real paths"
+          },
+          "tags": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "in_groups": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "comparison_groups": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "group_id",
+          "photograph_ids",
+          "group_type",
+          "human_reference_keep_preference",
+          "curator_notes"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "group_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "photograph_ids": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 6,
+            "items": { "type": "string" }
+          },
+          "group_type": {
+            "type": "string",
+            "minLength": 1
+          },
+          "human_reference_keep_preference": {
+            "type": "string",
+            "minLength": 1,
+            "description": "photograph_id, tie, or uncertain — human-authored only"
+          },
+          "curator_notes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "privacy_notes": {
+      "type": "string"
+    }
+  }
+}

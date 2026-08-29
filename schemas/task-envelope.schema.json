@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://photo-critic.local/schemas/task-envelope.schema.json",
+  "title": "Task Envelope",
+  "description": "Machine-readable authorization boundary for a task (SPECIFY/CONSTRAIN).",
+  "type": "object",
+  "required": [
+    "task_id",
+    "authority",
+    "allowed_paths",
+    "forbidden_paths",
+    "frozen_paths",
+    "allowed_dependency_changes",
+    "forbidden_operations"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "task_id": { "type": "string", "minLength": 1 },
+    "authority": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    },
+    "allowed_paths": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    },
+    "forbidden_paths": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "frozen_paths": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "allowed_dependency_changes": { "type": "boolean" },
+    "forbidden_operations": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "require_verifier_evidence": { "type": "boolean", "default": false },
+    "external_io_allowed": { "type": "boolean", "default": false },
+    "commit_allowed": { "type": "boolean", "default": false }
+  }
+}

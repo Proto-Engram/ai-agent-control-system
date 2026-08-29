@@ -1,0 +1,12 @@
+# Photo Critic Gitleaks configuration (P1 security baseline)
+title = "Photo Critic gitleaks config"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Allowlist for known false positives"
+paths = [
+  '''docs/research/''',
+  '''prompts/evaluation/P1-PHOTOGRAPHIC-FRAMEWORK-.*-REVIEW.*\.md''',
+]

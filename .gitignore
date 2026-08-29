@@ -1,0 +1,72 @@
+# --- Generated artifacts (see artifacts/README.md) ---
+artifacts/*
+!artifacts/README.md
+
+# --- Local data: do not commit private photographs ---
+data/datasets/*
+!data/datasets/.gitkeep
+data/evaluation/*
+!data/evaluation/.gitkeep
+!data/evaluation/*.json
+data/**/*.jpg
+data/**/*.jpeg
+data/**/*.png
+data/**/*.heic
+data/**/*.heif
+data/**/*.raw
+data/**/*.cr2
+data/**/*.nef
+data/**/*.arw
+data/**/*.dng
+data/**/*.tif
+data/**/*.tiff
+data/**/*.webp
+data/**/*.gif
+
+# --- Secrets and environment ---
+.env
+.env.*
+!.env.example
+*.pem
+credentials.json
+secrets.*
+
+# --- OS and editor ---
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+
+# --- Dependencies and build (stack-agnostic placeholders) ---
+node_modules/
+dist/
+build/
+out/
+target/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.envrc
+*.egg-info/
+.eggs/
+
+# --- Logs and caches ---
+*.log
+logs/
+.cache/
+.tmp/
+temp/
+tmp/
+
+# --- IDE (optional local settings) ---
+.idea/
+.cursor/
+*.suo
+*.user
+
+# --- Generated experiment gate outputs ---
+experiments/**/preflight-result.json
+examples/demo-manifest/preflight-result.json

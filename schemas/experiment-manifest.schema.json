@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://photo-critic.local/schemas/experiment-manifest.schema.json",
+  "title": "Photo Critic Experiment Manifest",
+  "description": "Derived from docs/03-MODEL-EVALUATION.md section 6.1 and HD-12/HD-13 extensions.",
+  "type": "object",
+  "required": [
+    "experiment_id",
+    "phase",
+    "dataset_id",
+    "rubric_version",
+    "prompt_version",
+    "preprocessing_policy",
+    "pricing_snapshot_id",
+    "blinding_seed",
+    "candidates",
+    "model_mapping_path",
+    "retry_policy",
+    "inference_parameters",
+    "prompt_freeze",
+    "foundry",
+    "evaluator"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "experiment_id": { "type": "string", "minLength": 1 },
+    "phase": { "type": "string", "enum": ["pilot", "full"] },
+    "dataset_id": { "type": "string", "minLength": 1 },
+    "rubric_version": { "type": "string", "const": "1.0" },
+    "prompt_version": { "type": "string", "minLength": 1 },
+    "prompt_path": { "type": ["string", "null"] },
+    "preprocessing_policy": { "type": "string", "minLength": 1 },
+    "pricing_snapshot_id": { "type": "string", "minLength": 1 },
+    "blinding_seed": { "type": "integer" },
+    "candidates": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" }
+    },
+    "model_mapping_path": { "type": "string", "minLength": 1 },
+    "retry_policy": {
+      "type": "object",
+      "required": ["max_retries", "retry_on_parse_failure", "rate_limit_backoff"],
+      "additionalProperties": false,
+      "properties": {
+        "max_retries": { "type": "integer", "minimum": 0 },
+        "retry_on_parse_failure": { "type": "boolean" },
+        "rate_limit_backoff": { "type": "string", "minLength": 1 }
+      }
+    },
+    "inference_parameters": {
+      "type": "object",
+      "required": ["temperature", "top_p", "max_output_tokens"],
+      "additionalProperties": false,
+      "properties": {
+        "temperature": { "type": "string", "minLength": 1 },
+        "top_p": { "type": "string", "minLength": 1 },
+        "max_output_tokens": { "type": "string", "minLength": 1 }
+      }
+    },
+    "started_at": { "type": "string", "format": "date-time" },
+    "completed_at": { "type": "string", "format": "date-time" },
+    "notes": { "type": "string" },
+    "prompt_freeze": {
+      "type": "object",
+      "required": ["ledger_entry", "prompt_versions", "prompt_paths", "prompt_hashes"],
+      "additionalProperties": false,
+      "properties": {
+        "ledger_entry": { "type": "string", "const": "HD-13" },
+        "prompt_versions": {
+          "type": "object",
+          "required": [
+            "task_a",
+            "task_b",
+            "framework",
+            "output_contract",
+            "cross_model_invariants"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "task_a": { "type": "string" },
+            "task_b": { "type": "string" },
+            "framework": { "type": "string" },
+            "output_contract": { "type": "string" },
+            "cross_model_invariants": { "type": "string" }
+          }
+        },
+        "prompt_paths": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        },
+        "prompt_hashes": {
+          "type": "object",
+          "additionalProperties": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+        }
+      }
+    },
+    "foundry": {
+      "type": "object",
+      "required": [
+        "deployment_type",
+        "azure_region",
+        "deployment_name",
+        "pricing_meter",
+        "pricing_snapshot_date",
+        "reasoning_configuration",
+        "preprocessing_configuration",
+        "portal_meter_verified"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "deployment_type": { "type": "string", "minLength": 1 },
+        "azure_region": { "type": "string", "minLength": 1 },
+        "deployment_name": { "type": "string", "minLength": 1 },
+        "pricing_meter": { "type": "string", "minLength": 1 },
+        "pricing_snapshot_date": { "type": "string", "minLength": 1 },
+        "reasoning_configuration": { "type": "string", "minLength": 1 },
+        "preprocessing_configuration": { "type": "string", "minLength": 1 },
+        "portal_meter_verified": { "type": "boolean" }
+      }
+    },
+    "evaluator": {
+      "type": "object",
+      "required": ["evaluator_id", "conflict_of_interest_notes"],
+      "additionalProperties": false,
+      "properties": {
+        "evaluator_id": { "type": "string", "minLength": 1 },
+        "conflict_of_interest_notes": { "type": "string" }
+      }
+    }
+  }
+}
